@@ -1,5 +1,5 @@
 # vim:set ft=dockerfile:
-ARG BASEIMAGE=ubuntu:rolling
+ARG BASEIMAGE=ubuntu:24.04
 FROM $BASEIMAGE
 LABEL maintainer="Stephan Zander <stephan.zander@lucas-nuelle.de>"
 
@@ -8,8 +8,8 @@ ENV LANG en_US.UTF-8
 
 RUN apt-get update && apt-get install --no-install-recommends -y -q \
     mosquitto \
- && apt-get clean \
- && rm -rf /var/lib/apt/lists/*
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY mosquitto.conf /etc/mosquitto
 COPY server.conf /etc/mosquitto/conf.d/server.conf
